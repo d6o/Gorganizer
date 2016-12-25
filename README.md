@@ -38,7 +38,9 @@ Pull Requests [are welcome](https://github.com/DiSiqueira/Gorganizer#social-codi
 ### Option 1: Download binary
 
 ```bash
-$
+$ wget https://github.com/DiSiqueira/Gorganizer/archive/0.1.zip
+$ cd Gorganizer-0.1/bin
+$ ./gorganizer -h
 ```
 
 ### Option 2: From source
