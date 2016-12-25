@@ -14,7 +14,7 @@ The Gorganizer goal is to be a perfect tool providing a stupidly easy to use and
 Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira/Gorganizer#social-coding)
 
 ![](https://i.imgur.com/2rFfn9i.gif)
-![](http://i.imgur.com/psKRFoS.jpg)
+![](https://i.imgur.com/AkgCeMx.jpg)
 
 ## Features
 
