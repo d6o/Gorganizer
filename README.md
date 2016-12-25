@@ -2,8 +2,6 @@
 
 # Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Dependencies Badge](https://img.shields.io/badge/Dependencies-BoltDB-brightgreen.svg) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
 
-====
-
 Gorganizer is a Go program inspired by [Bhrigu Srivastava][bhrigu123] [Classifier Project][classifier].
 
 The Gorganizer goal is to be a perfect tool providing a stupidly easy to use and fast program to organize your files based on its extension.
