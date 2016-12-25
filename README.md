@@ -17,12 +17,13 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 
 ## Features
 
-- It's perfect to organize your downloads folder
+- MORE THAN 60 DEFAULT EXTENSIONS!!!
+- It's perfect to organize your DOWNLOADS FOLDER
 - Instantly organize your files
-- Customize to your needs
-- Easy to add rules
+- CUSTOMIZE to your needs
+- EASY to add rules
 - Easy to delete default rules
-- Stupidly [easy to use](https://github.com/DiSiqueira/Gorganizer#usage)
+- STUPIDLY [EASY TO USE](https://github.com/DiSiqueira/Gorganizer#usage)
 - Very fast start up and response time
 - Uses natives libs
 - Only one dependency - [BoltDB](https://github.com/boltdb/bolt)
