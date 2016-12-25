@@ -1,4 +1,4 @@
-# ![gitql](https://rawgit.com/DiSiqueira/Gorganizer/master/gorganizer-logo.png)
+# ![gitql](https://rawgit.com/DiSiqueira/Gorganizer/master/gorganizer-logo-50.jpg)
 
 # Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Dependencies Badge](https://img.shields.io/badge/Dependencies-BoltDB-brightgreen.svg) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
 
