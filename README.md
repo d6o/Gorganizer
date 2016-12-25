@@ -13,10 +13,7 @@ The Gorganizer goal is to be a perfect tool providing a stupidly easy to use and
 
 ## Project Status
 
-Gorganizer is on beta
-
-Bolt is stable, more features will be added and full unit tests will be made.
-Pull Requests [are welcome](https://github.com/DiSiqueira/Gorganizer#social-coding)
+Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira/Gorganizer#social-coding)
 
 ![](https://i.imgur.com/2rFfn9i.gif)
 
