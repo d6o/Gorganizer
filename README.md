@@ -33,12 +33,11 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 
 ## Installation
 
-### Option 1: Download binary
+### Option 1: Go Get
 
 ```bash
-$ wget https://github.com/DiSiqueira/Gorganizer/archive/0.1.zip
-$ cd Gorganizer-0.1/bin
-$ ./gorganizer -h
+$ go get github.com/DiSiqueira/Gorganizer
+$ Gorganizer -h
 ```
 
 ### Option 2: From source
