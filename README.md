@@ -1,6 +1,6 @@
 # ![gitql](https://rawgit.com/DiSiqueira/Gorganizer/master/gorganizer-logo-50.jpg)
 
-# Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Dependencies Badge](https://img.shields.io/badge/Dependencies-BoltDB-brightgreen.svg) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
+# Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Go Report](https://goreportcard.com/badge/github.com/DiSiqueira/Gorganizer) ![Dependencies Badge](https://img.shields.io/badge/Dependencies-BoltDB-brightgreen.svg) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
 
 Gorganizer is a Go program inspired by [Bhrigu Srivastava][bhrigu123] [Classifier Project][classifier].
 
