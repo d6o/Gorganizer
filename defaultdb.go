@@ -111,7 +111,7 @@ func defaultDb() {
 	insertRule("rpm:RPMPackages")
 
 	//Set Database was initialized
-	boltSet("initial","true")
+	boltSet("initial", "true")
 
 	fmt.Println("Default database initialized")
 }

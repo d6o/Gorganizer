@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/boltdb/bolt"
 	"bytes"
 	"fmt"
+	"github.com/boltdb/bolt"
 	"strings"
 )
 
@@ -50,7 +50,7 @@ func boltScanExt() {
 		fmt.Println("Extension	|	Folder")
 		for k, v := c.Seek(prefix); bytes.HasPrefix(k, prefix); k, v = c.Next() {
 
-			ext := strings.Split(string(k),":")
+			ext := strings.Split(string(k), ":")
 
 			fmt.Printf("%s		|	%s\n", ext[1], v)
 		}

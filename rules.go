@@ -19,11 +19,11 @@ func insertRule(rule string) {
 
 	ruleArr := strings.Split(rule, ":")
 
-	boltSet("ext:"+ruleArr[0],ruleArr[1])
+	boltSet("ext:"+ruleArr[0], ruleArr[1])
 }
 
 func deleteRule(rule string) {
-	boltDelete("ext:"+rule)
+	boltDelete("ext:" + rule)
 }
 
 func showRules() {

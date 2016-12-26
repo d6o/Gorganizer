@@ -1,20 +1,20 @@
 package main
 
 import (
-	"io/ioutil"
-	"path"
-	"github.com/boltdb/bolt"
-	"log"
-	"strings"
-	"os"
 	"flag"
 	"fmt"
+	"github.com/boltdb/bolt"
+	"io/ioutil"
+	"log"
+	"os"
+	"path"
+	"strings"
 )
 
 const (
-	dbName = "gorganizer.db"
+	dbName        = "gorganizer.db"
 	dbPermissions = 0600
-	bucketName = "Gorganizer"
+	bucketName    = "Gorganizer"
 )
 
 var db, err = bolt.Open(dbName, dbPermissions, nil)
@@ -62,12 +62,12 @@ func main() {
 
 	for _, f := range files {
 
-		file := *inputFolder+"/"+f.Name()
-		ext := strings.TrimPrefix(path.Ext(file),".")
-		folder := *outputFolder+"/"+boltGet("ext:"+ext)
-		newFile := folder+"/"+f.Name()
+		file := *inputFolder + "/" + f.Name()
+		ext := strings.TrimPrefix(path.Ext(file), ".")
+		folder := *outputFolder + "/" + boltGet("ext:"+ext)
+		newFile := folder + "/" + f.Name()
 
-		fmt.Println(file+" --> "+newFile)
+		fmt.Println(file + " --> " + newFile)
 
 		if !*preview {
 			_ = os.Mkdir(folder, os.ModePerm)
