@@ -1,10 +1,9 @@
 package main
 
 import (
-	"strings"
 	"fmt"
+	"strings"
 )
-
 
 func iniGet(key string) string {
 
@@ -13,7 +12,7 @@ func iniGet(key string) string {
 	for _, section := range names[1:] {
 
 		if cfg.Section(section).HasKey(key) {
-			return  section
+			return section
 		}
 	}
 

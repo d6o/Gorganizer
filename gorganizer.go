@@ -3,16 +3,16 @@ package main
 import (
 	"flag"
 	"fmt"
+	"gopkg.in/ini.v1"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
-	"gopkg.in/ini.v1"
 )
 
 const (
-	configFile        = "config.ini"
+	configFile = "config.ini"
 )
 
 var cfg *ini.File

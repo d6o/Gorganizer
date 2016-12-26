@@ -8,7 +8,7 @@ import (
 
 func initDb() {
 
-	cfg, _ = ini. LoadSources(ini.LoadOptions{AllowBooleanKeys: true, Loose: true}, configFile)
+	cfg, _ = ini.LoadSources(ini.LoadOptions{AllowBooleanKeys: true, Loose: true}, configFile)
 
 	if _, err := os.Stat(configFile); os.IsNotExist(err) {
 		cfg = ini.Empty()
