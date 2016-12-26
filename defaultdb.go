@@ -2,25 +2,26 @@ package main
 
 import (
 	"fmt"
-	"github.com/boltdb/bolt"
+	"gopkg.in/ini.v1"
+	"os"
 )
 
 func initDb() {
-	db.Update(func(tx *bolt.Tx) error {
-		_, err := tx.CreateBucketIfNotExists([]byte(bucketName))
-		if err != nil {
-			return fmt.Errorf("Error creating bucket: %s", err)
-		}
-		return nil
-	})
 
-	initial := boltGet("initial")
+	cfg, _ = ini. LoadSources(ini.LoadOptions{AllowBooleanKeys: true, Loose: true}, configFile)
 
-	if initial != "" {
-		return
+	if _, err := os.Stat(configFile); os.IsNotExist(err) {
+		cfg = ini.Empty()
+		defaultDb()
 	}
+}
 
-	defaultDb()
+func closeDb() {
+	err := cfg.SaveTo(configFile)
+
+	if err != nil {
+		panic(err)
+	}
 }
 
 func defaultDb() {
@@ -109,9 +110,6 @@ func defaultDb() {
 
 	//RPMPackages
 	insertRule("rpm:RPMPackages")
-
-	//Set Database was initialized
-	boltSet("initial", "true")
 
 	fmt.Println("Default database initialized")
 }

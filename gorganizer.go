@@ -3,29 +3,21 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/boltdb/bolt"
 	"io/ioutil"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
+	"gopkg.in/ini.v1"
 )
 
 const (
-	dbName        = "gorganizer.db"
-	dbPermissions = 0600
-	bucketName    = "Gorganizer"
+	configFile        = "config.ini"
 )
 
-var db, err = bolt.Open(dbName, dbPermissions, nil)
+var cfg *ini.File
 
 func main() {
-
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
 
 	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
 	inputFolder := flag.String("directory", ".", "The directory whose files to classify")
@@ -41,13 +33,17 @@ func main() {
 
 	initDb()
 
+	defer closeDb()
+
 	if len(*newRule) > 0 {
+		fmt.Println("Creating new rule")
 		insertRule(*newRule)
 		showRules()
 		return
 	}
 
 	if len(*delRule) > 0 {
+		fmt.Println("Deleting rule")
 		deleteRule(*delRule)
 		showRules()
 		return
@@ -65,15 +61,23 @@ func main() {
 
 		file := filepath.Join(*inputFolder, f.Name())
 		ext := strings.TrimPrefix(path.Ext(file), ".")
-		folder := filepath.Join(*outputFolder, boltGet("ext:"+ext))
-		newFile := filepath.Join(folder, f.Name())
 
-		fmt.Println(file + " --> " + newFile)
+		newFolder := iniGet(ext)
 
-		if !*preview {
-			_ = os.Mkdir(folder, os.ModePerm)
-			os.Rename(file, newFile)
+		if len(newFolder) > 0 {
+
+			folder := filepath.Join(*outputFolder, iniGet(ext))
+			newFile := filepath.Join(folder, f.Name())
+
+			fmt.Println(file + " --> " + newFile)
+
+			if !*preview {
+				_ = os.Mkdir(folder, os.ModePerm)
+				os.Rename(file, newFile)
+			}
 		}
 	}
+
 	fmt.Println("All files have been gorganized!")
+
 }
