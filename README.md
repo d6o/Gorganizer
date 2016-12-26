@@ -29,6 +29,7 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 - Uses natives libs
 - Only one dependency - [BoltDB](https://github.com/boltdb/bolt)
 - Option to organize your files
+- Preview changes before moving
 
 ## Installation
 
@@ -45,7 +46,7 @@ $ ./gorganizer -h
 ```bash
 $ go get github.com/boltdb/bolt/...
 $ git clone https://github.com/DiSiqueira/Gorganizer.git
-$ cd Gorganizer/src
+$ cd Gorganizer/
 $ go build *.go
 ```
 
@@ -56,6 +57,13 @@ $ go build *.go
 ```bash
 # Organize your current directory
 $ ./gorganizer
+```
+
+### Only preview, do not make chane
+
+```bash
+# Prints a preview, but do not move
+$ ./gorganizer -preview=true
 ```
 
 ### Add new rule
@@ -108,7 +116,7 @@ $ ./gorganizer -h
 
 ## Program Help
 
-![](http://image.prntscr.com/image/27c361f3891c461d83584577eb18ec72.png)
+![](http://image.prntscr.com/image/a7f2e8071d3742cda44149ed9a7c2674.png)
 
 ## Contributing
 
@@ -123,7 +131,7 @@ PRs are welcome. To begin developing, do this:
 ```bash
 $ go get github.com/boltdb/bolt/...
 $ git clone --recursive git@github.com:DiSiqueira/Gorganizer.git
-$ cd Gorganizer/src/
+$ cd Gorganizer/
 $ go run *.go
 ```
 
@@ -141,7 +149,7 @@ $ go run *.go
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 Diego Siqueira
+Copyright (c) 2013-2016 Diego Siqueira
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

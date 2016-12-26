@@ -34,6 +34,8 @@ func main() {
 
 	printRules := flag.Bool("allrules", false, "Print all rules")
 
+	preview := flag.Bool("preview", false, "Only preview, do not move files")
+
 	flag.Parse()
 
 	initDb()
@@ -63,9 +65,14 @@ func main() {
 		file := *inputFolder+"/"+f.Name()
 		ext := strings.TrimPrefix(path.Ext(file),".")
 		folder := *outputFolder+"/"+boltGet("ext:"+ext)
+		newFile := folder+"/"+f.Name()
 
-		_ = os.Mkdir(folder, os.ModePerm)
-		os.Rename(file, folder+"/"+f.Name())
+		fmt.Println(file+" --> "+newFile)
+
+		if !*preview {
+			_ = os.Mkdir(folder, os.ModePerm)
+			os.Rename(file, newFile)
+		}
 	}
 	fmt.Println("All files have been gorganized!")
 }
