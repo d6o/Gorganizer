@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 	"strings"
 )
 
@@ -26,8 +27,8 @@ func main() {
 	}
 	defer db.Close()
 
-	outputFolder := flag.String("output", "./", "Main directory to put organized folders")
-	inputFolder := flag.String("directory", "./", "The directory whose files to classify")
+	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
+	inputFolder := flag.String("directory", ".", "The directory whose files to classify")
 
 	newRule := flag.String("newrule", "", "Insert a new rule. Format ext:folder Example: mp3:Music")
 	delRule := flag.String("delrule", "", "Delete a rule. Format ext Example: mp3")
@@ -62,10 +63,10 @@ func main() {
 
 	for _, f := range files {
 
-		file := *inputFolder + "/" + f.Name()
+		file := filepath.Join(*inputFolder, f.Name())
 		ext := strings.TrimPrefix(path.Ext(file), ".")
-		folder := *outputFolder + "/" + boltGet("ext:"+ext)
-		newFile := folder + "/" + f.Name()
+		folder := filepath.Join(*outputFolder, boltGet("ext:"+ext))
+		newFile := filepath.Join(folder, f.Name())
 
 		fmt.Println(file + " --> " + newFile)
 
