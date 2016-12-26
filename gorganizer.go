@@ -29,8 +29,8 @@ func main() {
 	outputFolder := flag.String("output", "./", "Main directory to put organized folders")
 	inputFolder := flag.String("directory", "./", "The directory whose files to classify")
 
-	newRule := flag.String("newrule", "", "Insert a new rule. Format ext:folder Exemple: mp3:Music")
-	delRule := flag.String("delrule", "", "Delete a rule. Format ext Exemple: mp3")
+	newRule := flag.String("newrule", "", "Insert a new rule. Format ext:folder Example: mp3:Music")
+	delRule := flag.String("delrule", "", "Delete a rule. Format ext Example: mp3")
 
 	printRules := flag.Bool("allrules", false, "Print all rules")
 
