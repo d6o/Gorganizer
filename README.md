@@ -1,6 +1,6 @@
-# ![gitql](https://rawgit.com/DiSiqueira/Gorganizer/master/gorganizer-logo-50.jpg)
+# ![Gorganizer](https://rawgit.com/DiSiqueira/Gorganizer/master/gorganizer-logo-50.jpg)
 
-# Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Go Report](https://goreportcard.com/badge/github.com/DiSiqueira/Gorganizer) ![Dependencies Badge](https://img.shields.io/badge/Dependencies-BoltDB-brightgreen.svg) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
+# Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Go Report](https://goreportcard.com/badge/github.com/DiSiqueira/Gorganizer) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
 
 Gorganizer is a Go program inspired by [Bhrigu Srivastava][bhrigu123] [Classifier Project][classifier].
 
@@ -27,7 +27,6 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 - STUPIDLY [EASY TO USE](https://github.com/DiSiqueira/Gorganizer#usage)
 - Very fast start up and response time
 - Uses natives libs
-- Only one dependency - [BoltDB](https://github.com/boltdb/bolt)
 - Option to organize your files
 - Preview changes before moving
 
@@ -43,7 +42,7 @@ $ Gorganizer -h
 ### Option 2: From source
 
 ```bash
-$ go get github.com/boltdb/bolt/...
+$ go get gopkg.in/ini.v1
 $ git clone https://github.com/DiSiqueira/Gorganizer.git
 $ cd Gorganizer/
 $ go build *.go
@@ -128,7 +127,7 @@ Please use the [issue tracker](https://github.com/DiSiqueira/Gorganizer/issues) 
 PRs are welcome. To begin developing, do this:
 
 ```bash
-$ go get github.com/boltdb/bolt/...
+$ go get gopkg.in/ini.v1
 $ git clone --recursive git@github.com:DiSiqueira/Gorganizer.git
 $ cd Gorganizer/
 $ go run *.go
