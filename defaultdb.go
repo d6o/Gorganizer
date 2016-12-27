@@ -3,21 +3,45 @@ package main
 import (
 	"fmt"
 	"gopkg.in/ini.v1"
-	"os"
+	"os/user"
+	"path/filepath"
 )
+
+func testDb(file string) bool {
+	cfgTest, err := ini.LoadSources(ini.LoadOptions{AllowBooleanKeys: true, Loose: false}, file)
+
+	if err != nil {
+		return false
+	}
+
+	cfg = cfgTest
+
+	return true
+}
 
 func initDb() {
 
-	cfg, _ = ini.LoadSources(ini.LoadOptions{AllowBooleanKeys: true, Loose: true}, configFile)
-
-	if _, err := os.Stat(configFile); os.IsNotExist(err) {
-		cfg = ini.Empty()
-		defaultDb()
+	//test if exist a configFile in the directory
+	cfgFile = configFile
+	if testDb(cfgFile) {
+		return
 	}
+
+	//test if exist a configFile in the user's home
+	currentUser, _ := user.Current()
+	cfgFile = filepath.Join(currentUser.HomeDir, configFile)
+	if testDb(cfgFile) {
+		return
+	}
+
+	//Create a default database in user's home
+	cfg = ini.Empty()
+	defaultDb()
+
 }
 
 func closeDb() {
-	err := cfg.SaveTo(configFile)
+	err := cfg.SaveTo(cfgFile)
 
 	if err != nil {
 		panic(err)
