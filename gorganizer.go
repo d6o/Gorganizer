@@ -12,10 +12,11 @@ import (
 )
 
 const (
-	configFile = "config.ini"
+	configFile = ".gorganizer.ini"
 )
 
 var cfg *ini.File
+var cfgFile string
 
 func main() {
 
