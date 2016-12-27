@@ -19,18 +19,18 @@ func testDb(file string) bool {
 	return true
 }
 
-func initDb()  {
+func initDb() {
 
 	//test if exist a configFile in the directory
 	cfgFile = configFile
-	if (testDb(cfgFile)) {
+	if testDb(cfgFile) {
 		return
 	}
 
 	//test if exist a configFile in the user's home
 	currentUser, _ := user.Current()
 	cfgFile = filepath.Join(currentUser.HomeDir, configFile)
-	if (testDb(cfgFile)) {
+	if testDb(cfgFile) {
 		return
 	}
 
