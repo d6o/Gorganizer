@@ -4,7 +4,7 @@
 
 Gorganizer is a Go program inspired by [Bhrigu Srivastava][bhrigu123] [Classifier Project][classifier].
 
-The Gorganizer goal is to be a perfect tool providing a stupidly easy to use and fast program to organize your files based on its extension.
+The Gorganizer's goal is to be a perfect tool providing a stupidly easy-to-use and fast program to organize your files based on its extension.
 
 [bhrigu123]: https://github.com/bhrigu123
 [classifier]: https://github.com/bhrigu123/classifier
@@ -26,7 +26,7 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 - Easy to delete default rules
 - STUPIDLY [EASY TO USE](https://github.com/DiSiqueira/Gorganizer#usage)
 - Very fast start up and response time
-- Uses natives libs
+- Uses native libs
 - Option to organize your files
 - Preview changes before moving
 
