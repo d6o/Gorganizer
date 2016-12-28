@@ -57,7 +57,7 @@ $ go build *.go
 $ ./gorganizer
 ```
 
-### Only preview, do not make chane
+### Only preview, do not make change
 
 ```bash
 # Prints a preview, but do not move
@@ -81,7 +81,7 @@ $ ./gorganizer -delrule=txt
 ### Print all rules
 
 ```bash
-# Delete txt rule
+# Print all rules
 $ ./gorganizer -allrules=true
 ```
 
