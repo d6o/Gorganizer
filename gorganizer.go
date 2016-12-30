@@ -12,14 +12,14 @@ import (
 )
 
 const (
-	configFile = ".gorganizer.ini"
+	configFile = ".gorganizer-{lang}.ini"
 )
 
 var cfg *ini.File
 var cfgFile string
+var language string
 
 func main() {
-
 	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
 	inputFolder := flag.String("directory", ".", "The directory whose files to classify")
 
@@ -29,6 +29,8 @@ func main() {
 	printRules := flag.Bool("allrules", false, "Print all rules")
 
 	preview := flag.Bool("preview", false, "Only preview, do not move files")
+
+	flag.StringVar(&language, "language", "en", "Specify language: en|tr")
 
 	flag.Parse()
 
