@@ -29,6 +29,7 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 - Uses native libs
 - Option to organize your files
 - Preview changes before moving
+- Language support (English, Turkish)
 
 ## Installation
 
@@ -62,6 +63,13 @@ $ ./gorganizer
 ```bash
 # Prints a preview, but do not move
 $ ./gorganizer -preview=true
+```
+
+### Specify language (Default: en)
+
+```bash
+# Set language to Turkish
+$ ./gorganizer -language=tr
 ```
 
 ### Add new rule

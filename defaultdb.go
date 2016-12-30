@@ -5,6 +5,7 @@ import (
 	"gopkg.in/ini.v1"
 	"os/user"
 	"path/filepath"
+	"strings"
 )
 
 func testDb(file string) bool {
@@ -21,15 +22,20 @@ func testDb(file string) bool {
 
 func initDb() {
 
+	if language != "en" && language != "tr" {
+
+		language = "en"
+	}
+
 	//test if exist a configFile in the directory
-	cfgFile = configFile
+	cfgFile = strings.Replace(configFile, "{lang}", language, 1)
 	if testDb(cfgFile) {
 		return
 	}
 
 	//test if exist a configFile in the user's home
 	currentUser, _ := user.Current()
-	cfgFile = filepath.Join(currentUser.HomeDir, configFile)
+	cfgFile = filepath.Join(currentUser.HomeDir, cfgFile)
 	if testDb(cfgFile) {
 		return
 	}
@@ -49,91 +55,125 @@ func closeDb() {
 }
 
 func defaultDb() {
+
+	lang := langVars()
+
 	fmt.Println("No database found")
 	fmt.Println("Creating default database")
 
 	//Music
-	insertRule("mp3:Musics")
-	insertRule("aac:Musics")
-	insertRule("flac:Musics")
-	insertRule("ogg:Musics")
-	insertRule("wma:Musics")
-	insertRule("m4a:Musics")
-	insertRule("aiff:Musics")
-	insertRule("wav:Musics")
-	insertRule("amr:Musics")
+	insertRule("mp3:" + lang["musics"])
+	insertRule("aac:" + lang["musics"])
+	insertRule("flac:" + lang["musics"])
+	insertRule("ogg:" + lang["musics"])
+	insertRule("wma:" + lang["musics"])
+	insertRule("m4a:" + lang["musics"])
+	insertRule("aiff:" + lang["musics"])
+	insertRule("wav:" + lang["musics"])
+	insertRule("amr:" + lang["musics"])
 
 	//Videos
-	insertRule("flv:Videos")
-	insertRule("ogv:Videos")
-	insertRule("avi:Videos")
-	insertRule("mp4:Videos")
-	insertRule("mpg:Videos")
-	insertRule("mpeg:Videos")
-	insertRule("3gp:Videos")
-	insertRule("mkv:Videos")
-	insertRule("ts:Videos")
-	insertRule("webm:Videos")
-	insertRule("vob:Videos")
-	insertRule("wmv:Videos")
+	insertRule("flv:" + lang["videos"])
+	insertRule("ogv:" + lang["videos"])
+	insertRule("avi:" + lang["videos"])
+	insertRule("mp4:" + lang["videos"])
+	insertRule("mpg:" + lang["videos"])
+	insertRule("mpeg:" + lang["videos"])
+	insertRule("3gp:" + lang["videos"])
+	insertRule("mkv:" + lang["videos"])
+	insertRule("ts:" + lang["videos"])
+	insertRule("webm:" + lang["videos"])
+	insertRule("vob:" + lang["videos"])
+	insertRule("wmv:" + lang["videos"])
 
 	//Pictures
-	insertRule("png:Pictures")
-	insertRule("jpeg:Pictures")
-	insertRule("gif:Pictures")
-	insertRule("jpg:Pictures")
-	insertRule("bmp:Pictures")
-	insertRule("svg:Pictures")
-	insertRule("webp:Pictures")
-	insertRule("psd:Pictures")
-	insertRule("tiff:Pictures")
+	insertRule("png:" + lang["pictures"])
+	insertRule("jpeg:" + lang["pictures"])
+	insertRule("gif:" + lang["pictures"])
+	insertRule("jpg:" + lang["pictures"])
+	insertRule("bmp:" + lang["pictures"])
+	insertRule("svg:" + lang["pictures"])
+	insertRule("webp:" + lang["pictures"])
+	insertRule("psd:" + lang["pictures"])
+	insertRule("tiff:" + lang["pictures"])
 
 	//Archives
-	insertRule("rar:Archives")
-	insertRule("zip:Archives")
-	insertRule("7z:Archives")
-	insertRule("gz:Archives")
-	insertRule("bz2:Archives")
-	insertRule("tar:Archives")
-	insertRule("dmg:Archives")
-	insertRule("tgz:Archives")
-	insertRule("xz:Archives")
-	insertRule("iso:Archives")
-	insertRule("cpio:Archives")
+	insertRule("rar:" + lang["archives"])
+	insertRule("zip:" + lang["archives"])
+	insertRule("7z:" + lang["archives"])
+	insertRule("gz:" + lang["archives"])
+	insertRule("bz2:" + lang["archives"])
+	insertRule("tar:" + lang["archives"])
+	insertRule("dmg:" + lang["archives"])
+	insertRule("tgz:" + lang["archives"])
+	insertRule("xz:" + lang["archives"])
+	insertRule("iso:" + lang["archives"])
+	insertRule("cpio:" + lang["archives"])
 
 	//Documents
-	insertRule("txt:Documents")
-	insertRule("pdf:Documents")
-	insertRule("doc:Documents")
-	insertRule("docx:Documents")
-	insertRule("odf:Documents")
-	insertRule("xls:Documents")
-	insertRule("xlsv:Documents")
-	insertRule("xlsx:Documents")
-	insertRule("ppt:Documents")
-	insertRule("pptx:Documents")
-	insertRule("ppsx:Documents")
-	insertRule("odp:Documents")
-	insertRule("odt:Documents")
-	insertRule("ods:Documents")
-	insertRule("md:Documents")
-	insertRule("json:Documents")
-	insertRule("csv:Documents")
+	insertRule("txt:" + lang["documents"])
+	insertRule("pdf:" + lang["documents"])
+	insertRule("doc:" + lang["documents"])
+	insertRule("docx:" + lang["documents"])
+	insertRule("odf:" + lang["documents"])
+	insertRule("xls:" + lang["documents"])
+	insertRule("xlsv:" + lang["documents"])
+	insertRule("xlsx:" + lang["documents"])
+	insertRule("ppt:" + lang["documents"])
+	insertRule("pptx:" + lang["documents"])
+	insertRule("ppsx:" + lang["documents"])
+	insertRule("odp:" + lang["documents"])
+	insertRule("odt:" + lang["documents"])
+	insertRule("ods:" + lang["documents"])
+	insertRule("md:" + lang["documents"])
+	insertRule("json:" + lang["documents"])
+	insertRule("csv:" + lang["documents"])
 
 	//Books
-	insertRule("mobi:Books")
-	insertRule("epub:Books")
-	insertRule("chm:Books")
+	insertRule("mobi:" + lang["books"])
+	insertRule("epub:" + lang["books"])
+	insertRule("chm:" + lang["books"])
 
 	//DEBPackages
-	insertRule("deb:DEBPackages")
+	insertRule("deb:" + lang["deb_packages"])
 
 	//Programs
-	insertRule("exe:Programs")
-	insertRule("msi:Programs")
+	insertRule("exe:" + lang["programs"])
+	insertRule("msi:" + lang["programs"])
 
 	//RPMPackages
-	insertRule("rpm:RPMPackages")
+	insertRule("rpm:" + lang["rpm_packages"])
 
 	fmt.Println("Default database initialized")
+}
+
+func langVars() map[string]string {
+
+	lang := make(map[string]string)
+
+	switch language {
+	case "tr":
+		lang["musics"] = "Müzikler"
+		lang["videos"] = "Videolar"
+		lang["pictures"] = "Resimler"
+		lang["archives"] = "Arşivler"
+		lang["documents"] = "Dökümanlar"
+		lang["books"] = "Kitaplar"
+		lang["deb_packages"] = "DEBPaketleri"
+		lang["programs"] = "Programlar"
+		lang["rpm_packages"] = "RPMPaketleri"
+
+	default:
+		lang["musics"] = "Musics"
+		lang["videos"] = "Videos"
+		lang["pictures"] = "Pictures"
+		lang["archives"] = "Archives"
+		lang["documents"] = "Documents"
+		lang["books"] = "Books"
+		lang["deb_packages"] = "DEBPackages"
+		lang["programs"] = "Programs"
+		lang["rpm_packages"] = "RPMPackages"
+	}
+
+	return lang
 }
