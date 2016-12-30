@@ -157,7 +157,7 @@ func langVars() map[string]string {
 		lang["videos"] = "Videolar"
 		lang["pictures"] = "Resimler"
 		lang["archives"] = "Arşivler"
-		lang["documents"] = "Dökümanlar"
+		lang["documents"] = "Dokümanlar"
 		lang["books"] = "Kitaplar"
 		lang["deb_packages"] = "DEBPaketleri"
 		lang["programs"] = "Programlar"
