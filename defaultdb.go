@@ -22,8 +22,7 @@ func testDb(file string) bool {
 
 func initDb() {
 
-	if language != "en" && language != "tr" {
-
+	if language == "" {
 		language = "en"
 	}
 
