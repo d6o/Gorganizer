@@ -61,6 +61,9 @@ func main() {
 	fmt.Println("GOrganizing your Files")
 
 	for _, f := range files {
+		if f.IsDir() {
+			continue
+		}
 
 		file := filepath.Join(*inputFolder, f.Name())
 		ext := strings.TrimPrefix(path.Ext(file), ".")
