@@ -40,7 +40,11 @@ func main() {
 
 	if len(*newRule) > 0 {
 		fmt.Println("Creating new rule")
-		insertRule(*newRule)
+		err := insertRule(*newRule)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 		showRules()
 		return
 	}

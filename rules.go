@@ -1,25 +1,20 @@
 package main
 
 import (
-	"regexp"
+	"fmt"
 	"strings"
 )
 
-func testRule(rule string) bool {
-	r, _ := regexp.Compile("([a-zA-Z]+):([a-zA-Z]+)")
-
-	return r.MatchString(rule)
-}
-
-func insertRule(rule string) {
-
-	if testRule(rule) == false {
-		return
+func insertRule(rule string) error {
+	ruleArr := strings.Split(rule, ":")
+	if len(ruleArr) != 2 {
+		return fmt.Errorf("rule must have exactly one colon ':', found %d in %#v", strings.Count(rule, ":"), rule)
+	}
+	if len(ruleArr[0]) == 0 || len(ruleArr[1]) == 0 {
+		return fmt.Errorf("rule must be in the format 'extension:folder', got %#v", rule)
 	}
 
-	ruleArr := strings.Split(rule, ":")
-
-	iniSet(ruleArr[0], ruleArr[1])
+	return iniSet(ruleArr[0], ruleArr[1])
 }
 
 func deleteRule(rule string) {
