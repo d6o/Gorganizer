@@ -7,6 +7,8 @@ import (
 
 func iniGet(key string) string {
 
+	key = strings.ToLower(key)
+
 	names := cfg.SectionStrings()
 
 	for _, section := range names[1:] {
@@ -22,6 +24,7 @@ func iniGet(key string) string {
 func iniSet(key, value string) error {
 
 	title := strings.Title(value)
+	key = strings.ToLower(key)
 
 	_, err := cfg.Section(title).NewKey(key, "")
 
