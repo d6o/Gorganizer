@@ -61,15 +61,15 @@ func defaultDb() {
 	fmt.Println("Creating default database")
 
 	//Music
-	insertRule("mp3:" + lang["musics"])
-	insertRule("aac:" + lang["musics"])
-	insertRule("flac:" + lang["musics"])
-	insertRule("ogg:" + lang["musics"])
-	insertRule("wma:" + lang["musics"])
-	insertRule("m4a:" + lang["musics"])
-	insertRule("aiff:" + lang["musics"])
-	insertRule("wav:" + lang["musics"])
-	insertRule("amr:" + lang["musics"])
+	insertRule("mp3:" + lang["music"])
+	insertRule("aac:" + lang["music"])
+	insertRule("flac:" + lang["music"])
+	insertRule("ogg:" + lang["music"])
+	insertRule("wma:" + lang["music"])
+	insertRule("m4a:" + lang["music"])
+	insertRule("aiff:" + lang["music"])
+	insertRule("wav:" + lang["music"])
+	insertRule("amr:" + lang["music"])
 
 	//Videos
 	insertRule("flv:" + lang["videos"])
@@ -163,7 +163,7 @@ func langVars() map[string]string {
 		lang["rpm_packages"] = "PacotesRPM"
 
 	case "tr":
-		lang["musics"] = "Müzikler"
+		lang["music"] = "Müzikler"
 		lang["videos"] = "Videolar"
 		lang["pictures"] = "Resimler"
 		lang["archives"] = "Arşivler"
@@ -174,7 +174,7 @@ func langVars() map[string]string {
 		lang["rpm_packages"] = "RPMPaketleri"
 
 	default:
-		lang["musics"] = "Musics"
+		lang["music"] = "Music"
 		lang["videos"] = "Videos"
 		lang["pictures"] = "Pictures"
 		lang["archives"] = "Archives"
