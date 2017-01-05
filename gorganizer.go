@@ -30,7 +30,7 @@ func main() {
 
 	preview := flag.Bool("preview", false, "Only preview, do not move files")
 
-	flag.StringVar(&language, "language", "en", "Specify language: en|tr")
+	flag.StringVar(&language, "language", "en", "Specify language: en|tr|pt")
 
 	flag.Parse()
 

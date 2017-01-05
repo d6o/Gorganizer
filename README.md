@@ -29,7 +29,7 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 - Uses native libs
 - Option to organize your files
 - Preview changes before moving
-- Language support (English, Turkish)
+- Language support (English, Portuguese and Turkish)
 
 ## Installation
 

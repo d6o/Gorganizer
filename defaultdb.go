@@ -151,6 +151,17 @@ func langVars() map[string]string {
 	lang := make(map[string]string)
 
 	switch language {
+	case "pt":
+		lang["musics"] = "Musicas"
+		lang["videos"] = "Videos"
+		lang["pictures"] = "Imagens"
+		lang["archives"] = "Arquivos"
+		lang["documents"] = "Documentos"
+		lang["books"] = "Livros"
+		lang["deb_packages"] = "PacotesDEB"
+		lang["programs"] = "Programas"
+		lang["rpm_packages"] = "PacotesRPM"
+
 	case "tr":
 		lang["musics"] = "Müzikler"
 		lang["videos"] = "Videolar"
