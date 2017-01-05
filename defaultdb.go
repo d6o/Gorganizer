@@ -152,7 +152,7 @@ func langVars() map[string]string {
 
 	switch language {
 	case "pt":
-		lang["musics"] = "Musicas"
+		lang["music"] = "Musicas"
 		lang["videos"] = "Videos"
 		lang["pictures"] = "Imagens"
 		lang["archives"] = "Arquivos"
