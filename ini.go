@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"strings"
+	"github.com/disiqueira/gotree"
 )
 
 func iniGet(key string) string {
@@ -49,15 +49,31 @@ func iniDelete(key string) bool {
 func iniScanExt() {
 
 	names := cfg.SectionStrings()
-	fmt.Println("Extension	|	Folder")
+
+	var tree gotree.GTStructure
+
+	tree.Name = "Rules"
 
 	for _, section := range names[1:] {
+
+		var treeFolder gotree.GTStructure
+
+		treeFolder.Name = section
+
 		keys := cfg.Section(section).KeyStrings()
 
 		for _, key := range keys {
-			fmt.Printf("%s		|	%s\n", key, section)
+
+			var treeItem gotree.GTStructure
+			treeItem.Name = key
+
+			treeFolder.Items = append(treeFolder.Items, treeItem)
 		}
 
+		tree.Items = append(tree.Items, treeFolder)
+
 	}
+
+	gotree.PrintTree(tree)
 
 }
