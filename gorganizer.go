@@ -9,6 +9,7 @@ import (
 	"path"
 	"path/filepath"
 	"strings"
+	"github.com/disiqueira/gotree"
 )
 
 const (
@@ -18,6 +19,36 @@ const (
 var cfg *ini.File
 var cfgFile string
 var language string
+
+func addToTree(folder, file string, tree gotree.GTStructure) gotree.GTStructure {
+
+	found := false
+
+	for i, item := range tree.Items {
+		if item.Name == folder {
+
+			var newFile gotree.GTStructure
+			newFile.Name = file
+
+			item.Items = append(item.Items, newFile)
+			tree.Items[i] = item
+		}
+	}
+
+	if !found {
+		var newFolder gotree.GTStructure
+		var newFile gotree.GTStructure
+
+		newFolder.Name = folder
+		newFile.Name = file
+
+		newFolder.Items = append(newFolder.Items, newFile)
+
+		tree.Items = append(tree.Items, newFolder)
+	}
+
+	return tree
+}
 
 func main() {
 	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
@@ -64,6 +95,10 @@ func main() {
 	files, _ := ioutil.ReadDir(*inputFolder)
 	fmt.Println("GOrganizing your Files")
 
+	var tree gotree.GTStructure
+
+	tree.Name = "Files"
+
 	for _, f := range files {
 		if f.IsDir() {
 			continue
@@ -76,17 +111,22 @@ func main() {
 
 		if len(newFolder) > 0 {
 
-			folder := filepath.Join(*outputFolder, iniGet(ext))
+			folder := filepath.Join(*outputFolder, newFolder)
 			newFile := filepath.Join(folder, f.Name())
-
-			fmt.Println(file + " --> " + newFile)
 
 			if !*preview {
 				_ = os.Mkdir(folder, os.ModePerm)
 				os.Rename(file, newFile)
 			}
+		} else {
+			newFolder = "Unknown extension (will not be moved)"
 		}
+
+		tree = addToTree(newFolder, f.Name(), tree)
+
 	}
+
+	gotree.PrintTree(tree)
 
 	fmt.Println("All files have been gorganized!")
 
