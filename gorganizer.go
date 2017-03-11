@@ -3,13 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/disiqueira/gotree"
 	"gopkg.in/ini.v1"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
-	"github.com/disiqueira/gotree"
 )
 
 const (
@@ -22,30 +22,21 @@ var language string
 
 func addToTree(folder, file string, tree gotree.GTStructure) gotree.GTStructure {
 
-	found := false
+	newFile := gotree.GTStructure{Name: file}
 
+	// append to parent, if exists
 	for i, item := range tree.Items {
 		if item.Name == folder {
-
-			var newFile gotree.GTStructure
-			newFile.Name = file
-
 			item.Items = append(item.Items, newFile)
 			tree.Items[i] = item
+			return tree
 		}
 	}
 
-	if !found {
-		var newFolder gotree.GTStructure
-		var newFile gotree.GTStructure
-
-		newFolder.Name = folder
-		newFile.Name = file
-
-		newFolder.Items = append(newFolder.Items, newFile)
-
-		tree.Items = append(tree.Items, newFolder)
-	}
+	// create parent if missing
+	newFolder := gotree.GTStructure{Name: folder}
+	newFolder.Items = append(newFolder.Items, newFile)
+	tree.Items = append(tree.Items, newFolder)
 
 	return tree
 }
