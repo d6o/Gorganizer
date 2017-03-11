@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"gopkg.in/ini.v1"
 	"os/user"
 	"path/filepath"
 	"strings"
+
+	"gopkg.in/ini.v1"
 )
 
 func testDb(file string) bool {

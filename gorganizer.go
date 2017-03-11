@@ -3,13 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/disiqueira/gotree"
-	"gopkg.in/ini.v1"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
 	"strings"
+
+	"github.com/disiqueira/gotree"
+	"gopkg.in/ini.v1"
 )
 
 const (
