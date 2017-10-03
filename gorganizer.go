@@ -42,6 +42,17 @@ func addToTree(folder, file string, tree gotree.GTStructure) gotree.GTStructure 
 	return tree
 }
 
+type excludeListType []string
+
+func (e excludeListType) checkExclude(ext string) bool {
+	for _, item := range e {
+		if item == ext {
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
 	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
 	inputFolder := flag.String("directory", ".", "The directory whose files to classify")
@@ -53,6 +64,8 @@ func main() {
 
 	preview := flag.Bool("preview", false, "Only preview, do not move files")
 
+	excludeExtentions := flag.String("exclude", "", "Exclude files will ignore files for organizer. Format pdf,odt")
+
 	flag.StringVar(&language, "language", "en", "Specify language: en|tr|pt")
 
 	flag.Parse()
@@ -60,6 +73,9 @@ func main() {
 	initDb()
 
 	defer closeDb()
+
+	var excludeList excludeListType
+	excludeList = strings.Split(*excludeExtentions, ",")
 
 	if len(*newRule) > 0 {
 		fmt.Println("Creating new rule")
@@ -98,6 +114,11 @@ func main() {
 
 		file := filepath.Join(*inputFolder, f.Name())
 		ext := strings.TrimPrefix(path.Ext(file), ".")
+
+		if excludeList.checkExclude(ext) {
+			tree = addToTree("Excluded Files", f.Name(), tree)
+			continue
+		}
 
 		newFolder := iniGet(ext)
 
