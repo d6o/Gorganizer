@@ -65,6 +65,13 @@ $ ./gorganizer
 $ ./gorganizer -preview=true
 ```
 
+### Do not organize specefic files
+
+```bash
+# Exclude .pdf and .docx files
+$ ./gorganizer -exclude="pdf,docx"
+```
+
 ### Specify language (Default: en)
 
 ```bash
