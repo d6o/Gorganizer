@@ -43,6 +43,9 @@ func addToTree(folder, file string, tree *gotree.GTStructure) {
 type excludeListType []string
 
 func (e excludeListType) checkExclude(ext string) bool {
+	if ext == "" {
+		return false
+	}
 	for _, item := range e {
 		if item == ext {
 			return true
