@@ -65,7 +65,13 @@ $ ./gorganizer
 $ ./gorganizer -preview=true
 ```
 
-### Do not organize specefic files
+### Recursive mode
+
+```bash
+$ ./gorganizer -recursive
+```
+
+### Do not organize specific files
 
 ```bash
 # Exclude .pdf and .docx files
