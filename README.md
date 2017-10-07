@@ -68,7 +68,6 @@ $ ./gorganizer -preview=true
 ### Recursive mode
 
 ```bash
-# Prints a preview, but do not move
 $ ./gorganizer -recursive
 ```
 
