@@ -67,6 +67,7 @@ func main() {
 
 	preview := flag.Bool("preview", false, "Only preview, do not move files")
 	recursive := flag.Bool("recursive", false, "Search over all directories.")
+	ignoreHiddenFiles := flag.Bool("hidden", true, "Ignore hidden files")
 
 	excludeExtentions := flag.String("exclude", "", "Exclude files will ignore files for organizer. Format pdf,odt")
 
@@ -108,18 +109,22 @@ func main() {
 	var tree gotree.GTStructure
 	tree.Name = "Files"
 
-	scanDirectory(*inputFolder, *outputFolder, &tree, *preview, *recursive)
+	scanDirectory(*inputFolder, *outputFolder, &tree, *preview, *recursive, *ignoreHiddenFiles)
 
 	gotree.PrintTree(tree)
 
 	fmt.Println("All files have been GOrganized!")
 }
 
-func scanDirectory(inputFolder, outputFolder string, tree *gotree.GTStructure, preview, recursive bool) {
+func scanDirectory(inputFolder, outputFolder string, tree *gotree.GTStructure, preview, recursive, ignoreHiddenFiles bool) {
 	files, _ := ioutil.ReadDir(inputFolder)
 	for _, f := range files {
+		if strings.Index(f.Name(), ".") == 0 && ignoreHiddenFiles {
+			addToTree("Hidden Files", f.Name(), tree)
+			continue
+		}
 		if f.IsDir() && recursive {
-			scanDirectory(filepath.Join(inputFolder, f.Name()), outputFolder, tree, preview, recursive)
+			scanDirectory(filepath.Join(inputFolder, f.Name()), outputFolder, tree, preview, recursive, ignoreHiddenFiles)
 		}
 
 		file := filepath.Join(inputFolder, f.Name())
