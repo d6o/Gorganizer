@@ -21,7 +21,7 @@ var cfg *ini.File
 var cfgFile string
 var language string
 
-func addToTree(folder, file string, tree gotree.GTStructure) gotree.GTStructure {
+func addToTree(folder, file string, tree *gotree.GTStructure) {
 
 	newFile := gotree.GTStructure{Name: file}
 
@@ -30,7 +30,7 @@ func addToTree(folder, file string, tree gotree.GTStructure) gotree.GTStructure 
 		if item.Name == folder {
 			item.Items = append(item.Items, newFile)
 			tree.Items[i] = item
-			return tree
+			return
 		}
 	}
 
@@ -38,8 +38,6 @@ func addToTree(folder, file string, tree gotree.GTStructure) gotree.GTStructure 
 	newFolder := gotree.GTStructure{Name: folder}
 	newFolder.Items = append(newFolder.Items, newFile)
 	tree.Items = append(tree.Items, newFolder)
-
-	return tree
 }
 
 type excludeListType []string
@@ -116,7 +114,7 @@ func main() {
 		ext := strings.TrimPrefix(path.Ext(file), ".")
 
 		if excludeList.checkExclude(ext) {
-			tree = addToTree("Excluded Files", f.Name(), tree)
+			addToTree("Excluded Files", f.Name(), &tree)
 			continue
 		}
 
@@ -135,12 +133,10 @@ func main() {
 			newFolder = "Unknown extension (will not be moved)"
 		}
 
-		tree = addToTree(newFolder, f.Name(), tree)
-
+		addToTree(newFolder, f.Name(), &tree)
 	}
 
 	gotree.PrintTree(tree)
 
 	fmt.Println("All files have been gorganized!")
-
 }
