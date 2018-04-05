@@ -119,7 +119,7 @@ func main() {
 func scanDirectory(inputFolder, outputFolder string, tree *gotree.GTStructure, preview, recursive, ignoreHiddenFiles bool) {
 	files, _ := ioutil.ReadDir(inputFolder)
 	for _, f := range files {
-		if strings.Index(f.Name(), ".") == 0 && ignoreHiddenFiles {
+		if strings.Index(f.Name(), ".") == 0 && !ignoreHiddenFiles {
 			addToTree("Hidden Files", f.Name(), tree)
 			continue
 		}
