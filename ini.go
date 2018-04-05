@@ -68,13 +68,13 @@ func iniScanExt() {
 			var treeItem gotree.GTStructure
 			treeItem.Name = key
 
-			treeFolder.Items = append(treeFolder.Items, treeItem)
+			treeFolder.Items = append(treeFolder.Items, &treeItem)
 		}
 
-		tree.Items = append(tree.Items, treeFolder)
+		tree.Items = append(tree.Items, &treeFolder)
 
 	}
 
-	gotree.PrintTree(tree)
+	gotree.PrintTree(&tree)
 
 }
