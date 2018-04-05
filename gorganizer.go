@@ -28,7 +28,7 @@ func addToTree(folder, file string, tree *gotree.GTStructure) {
 	// append to parent, if exists
 	for i, item := range tree.Items {
 		if item.Name == folder {
-			item.Items = append(item.Items, newFile)
+			item.Items = append(item.Items, &newFile)
 			tree.Items[i] = item
 			return
 		}
@@ -36,8 +36,8 @@ func addToTree(folder, file string, tree *gotree.GTStructure) {
 
 	// create parent if missing
 	newFolder := gotree.GTStructure{Name: folder}
-	newFolder.Items = append(newFolder.Items, newFile)
-	tree.Items = append(tree.Items, newFolder)
+	newFolder.Items = append(newFolder.Items, &newFile)
+	tree.Items = append(tree.Items, &newFolder)
 }
 
 type excludeListType []string
@@ -111,7 +111,7 @@ func main() {
 
 	scanDirectory(*inputFolder, *outputFolder, &tree, *preview, *recursive, *ignoreHiddenFiles)
 
-	gotree.PrintTree(tree)
+	gotree.PrintTree(&tree)
 
 	fmt.Println("All files have been GOrganized!")
 }
