@@ -21,23 +21,17 @@ var cfg *ini.File
 var cfgFile string
 var language string
 
-func addToTree(folder, file string, tree *gotree.GTStructure) {
-
-	newFile := gotree.GTStructure{Name: file}
-
+func addToTree(folder, file string, tree gotree.Tree) {
 	// append to parent, if exists
-	for i, item := range tree.Items {
-		if item.Name == folder {
-			item.Items = append(item.Items, &newFile)
-			tree.Items[i] = item
+	for _, item := range tree.Items() {
+		if item.Text() == folder {
+			item.Add(file)
 			return
 		}
 	}
 
 	// create parent if missing
-	newFolder := gotree.GTStructure{Name: folder}
-	newFolder.Items = append(newFolder.Items, &newFile)
-	tree.Items = append(tree.Items, &newFolder)
+	tree.Add(folder).Add(file)
 }
 
 type excludeListType []string
@@ -106,17 +100,16 @@ func main() {
 
 	fmt.Println("GOrganizing your Files")
 
-	var tree gotree.GTStructure
-	tree.Name = "Files"
+	tree := gotree.New("Files")
 
-	scanDirectory(*inputFolder, *outputFolder, &tree, *preview, *recursive, *ignoreHiddenFiles)
+	scanDirectory(*inputFolder, *outputFolder, tree, *preview, *recursive, *ignoreHiddenFiles)
 
-	gotree.PrintTree(&tree)
+	fmt.Println(tree.Print())
 
 	fmt.Println("All files have been GOrganized!")
 }
 
-func scanDirectory(inputFolder, outputFolder string, tree *gotree.GTStructure, preview, recursive, ignoreHiddenFiles bool) {
+func scanDirectory(inputFolder, outputFolder string, tree gotree.Tree, preview, recursive, ignoreHiddenFiles bool) {
 	files, _ := ioutil.ReadDir(inputFolder)
 	for _, f := range files {
 		if strings.Index(f.Name(), ".") == 0 && !ignoreHiddenFiles {

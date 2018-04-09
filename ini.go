@@ -4,16 +4,14 @@ import (
 	"strings"
 
 	"github.com/disiqueira/gotree"
+	"fmt"
 )
 
 func iniGet(key string) string {
-
 	key = strings.ToLower(key)
-
 	names := cfg.SectionStrings()
 
 	for _, section := range names[1:] {
-
 		if cfg.Section(section).HasKey(key) {
 			return section
 		}
@@ -23,7 +21,6 @@ func iniGet(key string) string {
 }
 
 func iniSet(key, value string) error {
-
 	title := strings.Title(value)
 	key = strings.ToLower(key)
 
@@ -33,11 +30,9 @@ func iniSet(key, value string) error {
 }
 
 func iniDelete(key string) bool {
-
 	names := cfg.SectionStrings()
 
 	for _, section := range names {
-
 		if cfg.Section(section).HasKey(key) {
 			cfg.Section(section).DeleteKey(key)
 			return true
@@ -48,33 +43,16 @@ func iniDelete(key string) bool {
 }
 
 func iniScanExt() {
-
 	names := cfg.SectionStrings()
-
-	var tree gotree.GTStructure
-
-	tree.Name = "Rules"
+	tree := gotree.New("Rules")
 
 	for _, section := range names[1:] {
-
-		var treeFolder gotree.GTStructure
-
-		treeFolder.Name = section
-
+		folder := tree.Add(section)
 		keys := cfg.Section(section).KeyStrings()
-
 		for _, key := range keys {
-
-			var treeItem gotree.GTStructure
-			treeItem.Name = key
-
-			treeFolder.Items = append(treeFolder.Items, &treeItem)
+			folder.Add(key)
 		}
-
-		tree.Items = append(tree.Items, &treeFolder)
-
 	}
 
-	gotree.PrintTree(&tree)
-
+	fmt.Println(tree.Print())
 }
