@@ -33,14 +33,18 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/d6o/Gorgan
 
 ## Installation
 
-### Option 1: Go Install
+### Option 1: Download pre-built binary
+
+Pre-built binaries for Linux, macOS, and Windows are available on the [latest release](https://github.com/d6o/Gorganizer/releases/latest) page. Download the archive for your platform, extract it, and you're ready to go -- no build tools required.
+
+### Option 2: Go Install
 
 ```bash
 $ go install github.com/d6o/Gorganizer@latest
 $ Gorganizer -h
 ```
 
-### Option 2: From source
+### Option 3: From source
 
 ```bash
 $ git clone https://github.com/d6o/Gorganizer.git
