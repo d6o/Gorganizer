@@ -42,7 +42,7 @@ func TestOrganizer_Run_EmptyDirectory(t *testing.T) {
 	t.Parallel()
 	dir := t.TempDir()
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,
@@ -66,7 +66,7 @@ func TestOrganizer_Run_CategorizesFiles(t *testing.T) {
 	createTestFile(t, dir, "doc.pdf")
 	createTestFile(t, dir, "photo.jpg")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,
@@ -101,7 +101,7 @@ func TestOrganizer_Run_PreviewDoesNotMove(t *testing.T) {
 
 	createTestFile(t, dir, "song.mp3")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,
@@ -131,7 +131,7 @@ func TestOrganizer_Run_MovesFiles(t *testing.T) {
 
 	createTestFile(t, dir, "song.mp3")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      out,
 		Preview:           false,
@@ -170,7 +170,7 @@ func TestOrganizer_Run_UnknownExtension(t *testing.T) {
 
 	createTestFile(t, dir, "data.xyz")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,
@@ -200,7 +200,7 @@ func TestOrganizer_Run_ExcludeList(t *testing.T) {
 	createTestFile(t, dir, "song.mp3")
 	createTestFile(t, dir, "doc.pdf")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,
@@ -235,7 +235,7 @@ func TestOrganizer_Run_Recursive(t *testing.T) {
 	createTestFile(t, dir, "top.mp3")
 	createTestFile(t, subdir, "nested.pdf")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,
@@ -268,7 +268,7 @@ func TestOrganizer_Run_HiddenFiles(t *testing.T) {
 	createTestFile(t, dir, ".hidden")
 	createTestFile(t, dir, "visible.mp3")
 
-	org := organizer.NewOrganizer(newMockResolver(), organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(newMockResolver(), organizer.Config{
 		InputFolder:       dir,
 		OutputFolder:      dir,
 		Preview:           true,

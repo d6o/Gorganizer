@@ -6,11 +6,10 @@ import (
 	"github.com/d6o/Gorganizer/pkg/store"
 )
 
-func newTestStore(t *testing.T, lang string, opts ...store.StoreOption) *store.Store {
+func newTestStore(t *testing.T, lang string) *store.Store {
 	t.Helper()
 	dir := t.TempDir()
-	allOpts := append([]store.StoreOption{store.WithConfigDir(dir)}, opts...)
-	s, err := store.NewStore(lang, allOpts...)
+	s, err := store.NewStore(lang, store.WithConfigDir(dir))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -47,26 +46,30 @@ func TestNewStore(t *testing.T) {
 	}
 }
 
-func TestNewStoreEventHandler(t *testing.T) {
+func TestNewEventHandler(t *testing.T) {
 	t.Parallel()
 	dir := t.TempDir()
 
-	var events []store.StoreEvent
+	var events []store.Event
 	s, err := store.NewStore("en",
 		store.WithConfigDir(dir),
-		store.WithEventHandler(func(evt store.StoreEvent) {
+		store.WithEventHandler(func(evt store.Event) {
 			events = append(events, evt)
 		}),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer s.Close()
+	t.Cleanup(func() {
+		if err := s.Close(); err != nil {
+			t.Error(err)
+		}
+	})
 
-	expected := []store.StoreEvent{
-		store.StoreEventDatabaseNotFound,
-		store.StoreEventCreatingDefaults,
-		store.StoreEventDefaultsInitialized,
+	expected := []store.Event{
+		store.EventDatabaseNotFound,
+		store.EventCreatingDefaults,
+		store.EventDefaultsInitialized,
 	}
 
 	if len(events) != len(expected) {
@@ -94,17 +97,21 @@ func TestNewStoreLoadsExisting(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	var events []store.StoreEvent
+	var events []store.Event
 	s2, err := store.NewStore("en",
 		store.WithConfigDir(dir),
-		store.WithEventHandler(func(evt store.StoreEvent) {
+		store.WithEventHandler(func(evt store.Event) {
 			events = append(events, evt)
 		}),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer s2.Close()
+	t.Cleanup(func() {
+		if err := s2.Close(); err != nil {
+			t.Error(err)
+		}
+	})
 
 	if len(events) != 0 {
 		t.Errorf("expected no events when loading existing db, got %d", len(events))

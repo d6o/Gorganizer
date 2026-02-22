@@ -13,8 +13,8 @@ type ExtensionResolver interface {
 	Lookup(ext string) string
 }
 
-// OrganizerConfig holds configuration for the Organizer.
-type OrganizerConfig struct {
+// Config holds configuration for the Organizer.
+type Config struct {
 	InputFolder       string
 	OutputFolder      string
 	Preview           bool
@@ -26,11 +26,11 @@ type OrganizerConfig struct {
 // Organizer scans directories and organizes files by their extension.
 type Organizer struct {
 	resolver ExtensionResolver
-	config   OrganizerConfig
+	config   Config
 }
 
 // NewOrganizer creates an Organizer with the given resolver and config.
-func NewOrganizer(resolver ExtensionResolver, config OrganizerConfig) *Organizer {
+func NewOrganizer(resolver ExtensionResolver, config Config) *Organizer {
 	return &Organizer{
 		resolver: resolver,
 		config:   config,

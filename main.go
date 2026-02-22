@@ -15,6 +15,13 @@ import (
 var version = "dev"
 
 func main() {
+	if err := run(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
 	showVersion := flag.Bool("version", false, "Print version and exit")
 	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
 	inputFolder := flag.String("directory", ".", "The directory whose files to classify")
@@ -31,22 +38,21 @@ func main() {
 
 	if *showVersion {
 		fmt.Println(version)
-		return
+		return nil
 	}
 
-	s, err := store.NewStore(*lang, store.WithEventHandler(func(evt store.StoreEvent) {
+	s, err := store.NewStore(*lang, store.WithEventHandler(func(evt store.Event) {
 		switch evt {
-		case store.StoreEventDatabaseNotFound:
+		case store.EventDatabaseNotFound:
 			fmt.Println("No database found")
-		case store.StoreEventCreatingDefaults:
+		case store.EventCreatingDefaults:
 			fmt.Println("Creating default database")
-		case store.StoreEventDefaultsInitialized:
+		case store.EventDefaultsInitialized:
 			fmt.Println("Default database initialized")
 		}
 	}))
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return err
 	}
 	defer func() {
 		if err := s.Close(); err != nil {
@@ -57,26 +63,25 @@ func main() {
 	if *newRule != "" {
 		fmt.Println("Creating new rule")
 		if err := s.InsertRule(*newRule); err != nil {
-			fmt.Println(err)
-			return
+			return err
 		}
 		printRulesTree(s)
-		return
+		return nil
 	}
 
 	if *delRule != "" {
 		fmt.Println("Deleting rule")
 		s.DeleteRule(*delRule)
 		printRulesTree(s)
-		return
+		return nil
 	}
 
 	if *printRules {
 		printRulesTree(s)
-		return
+		return nil
 	}
 
-	org := organizer.NewOrganizer(s, organizer.OrganizerConfig{
+	org := organizer.NewOrganizer(s, organizer.Config{
 		InputFolder:       *inputFolder,
 		OutputFolder:      *outputFolder,
 		Preview:           *preview,
@@ -89,13 +94,13 @@ func main() {
 
 	result, err := org.Run()
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		return err
 	}
 
 	printResultTree(result)
 
 	fmt.Println("All files have been GOrganized!")
+	return nil
 }
 
 func printRulesTree(s *store.Store) {

@@ -12,24 +12,24 @@ import (
 
 const configFile = ".gorganizer-{lang}.ini"
 
-// StoreEvent represents a lifecycle event emitted during Store operations.
-type StoreEvent int
+// Event represents a lifecycle event emitted during Store operations.
+type Event int
 
 const (
-	// StoreEventDatabaseNotFound is emitted when no existing config file is found.
-	StoreEventDatabaseNotFound StoreEvent = iota
-	// StoreEventCreatingDefaults is emitted when default rules are being created.
-	StoreEventCreatingDefaults
-	// StoreEventDefaultsInitialized is emitted after default rules have been written.
-	StoreEventDefaultsInitialized
+	// EventDatabaseNotFound is emitted when no existing config file is found.
+	EventDatabaseNotFound Event = iota
+	// EventCreatingDefaults is emitted when default rules are being created.
+	EventCreatingDefaults
+	// EventDefaultsInitialized is emitted after default rules have been written.
+	EventDefaultsInitialized
 )
 
-// StoreOption configures a Store during construction.
-type StoreOption func(*Store)
+// Option configures a Store during construction.
+type Option func(*Store)
 
 // WithEventHandler sets a callback for store lifecycle events.
 // The callback is invoked synchronously during NewStore when creating defaults.
-func WithEventHandler(fn func(StoreEvent)) StoreOption {
+func WithEventHandler(fn func(Event)) Option {
 	return func(s *Store) {
 		s.onEvent = fn
 	}
@@ -38,7 +38,7 @@ func WithEventHandler(fn func(StoreEvent)) StoreOption {
 // WithConfigDir overrides the directory where the config file is stored.
 // When set, the store only looks in this directory instead of the current
 // directory and user home directory.
-func WithConfigDir(dir string) StoreOption {
+func WithConfigDir(dir string) Option {
 	return func(s *Store) {
 		s.configDir = dir
 	}
@@ -48,14 +48,14 @@ func WithConfigDir(dir string) StoreOption {
 type Store struct {
 	cfg       *ini.File
 	cfgFile   string
-	onEvent   func(StoreEvent)
+	onEvent   func(Event)
 	configDir string
 }
 
 // NewStore creates a Store for the given language. It searches for a config file
 // in the current directory and the user's home directory. If none is found, it
 // creates a new config with default rules for 60+ file types.
-func NewStore(lang string, opts ...StoreOption) (*Store, error) {
+func NewStore(lang string, opts ...Option) (*Store, error) {
 	if lang == "" {
 		lang = "en"
 	}
@@ -110,7 +110,7 @@ func (s *Store) tryLoad(file string) bool {
 	return true
 }
 
-func (s *Store) emitEvent(evt StoreEvent) {
+func (s *Store) emitEvent(evt Event) {
 	if s.onEvent != nil {
 		s.onEvent(evt)
 	}

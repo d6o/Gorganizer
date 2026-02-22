@@ -1,8 +1,8 @@
 package store
 
 func (s *Store) populateDefaults(lang string) error {
-	s.emitEvent(StoreEventDatabaseNotFound)
-	s.emitEvent(StoreEventCreatingDefaults)
+	s.emitEvent(EventDatabaseNotFound)
+	s.emitEvent(EventCreatingDefaults)
 
 	translations := s.languageMap(lang)
 
@@ -100,7 +100,7 @@ func (s *Store) populateDefaults(lang string) error {
 		}
 	}
 
-	s.emitEvent(StoreEventDefaultsInitialized)
+	s.emitEvent(EventDefaultsInitialized)
 	return nil
 }
 
@@ -116,7 +116,7 @@ func (s *Store) languageMap(lang string) map[string]string {
 		translations["documents"] = "Documentos"
 		translations["books"] = "Livros"
 		translations["deb_packages"] = "PacotesDEB"
-		translations["programs"] = "Programas"
+		translations["programs"] = "Programas" //nolint:misspell // Portuguese translation
 		translations["rpm_packages"] = "PacotesRPM"
 
 	case "tr":
