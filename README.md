@@ -1,6 +1,6 @@
-# ![Gorganizer](https://rawgit.com/DiSiqueira/Gorganizer/master/gorganizer-logo-50.jpg)
+# ![Gorganizer](https://rawgit.com/d6o/Gorganizer/master/gorganizer-logo-50.jpg)
 
-# Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Go Report](https://goreportcard.com/badge/github.com/DiSiqueira/Gorganizer) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
+# Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Go Report](https://goreportcard.com/badge/github.com/d6o/Gorganizer) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
 
 Gorganizer is a Go program inspired by [Bhrigu Srivastava][bhrigu123] [Classifier Project][classifier].
 
@@ -11,7 +11,7 @@ The Gorganizer's goal is to be a perfect tool providing a stupidly easy-to-use a
 
 ## Project Status
 
-Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira/Gorganizer#social-coding)
+Gorganizer is on beta. Pull Requests [are welcome](https://github.com/d6o/Gorganizer#social-coding)
 
 ![](https://i.imgur.com/2rFfn9i.gif)
 ![](https://i.imgur.com/AkgCeMx.jpg)
@@ -24,7 +24,7 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 - CUSTOMIZE to your needs
 - EASY to add rules
 - Easy to delete default rules
-- STUPIDLY [EASY TO USE](https://github.com/DiSiqueira/Gorganizer#usage)
+- STUPIDLY [EASY TO USE](https://github.com/d6o/Gorganizer#usage)
 - Very fast start up and response time
 - Uses native libs
 - Option to organize your files
@@ -33,20 +33,19 @@ Gorganizer is on beta. Pull Requests [are welcome](https://github.com/DiSiqueira
 
 ## Installation
 
-### Option 1: Go Get
+### Option 1: Go Install
 
 ```bash
-$ go get github.com/DiSiqueira/Gorganizer
+$ go install github.com/d6o/Gorganizer@latest
 $ Gorganizer -h
 ```
 
 ### Option 2: From source
 
 ```bash
-$ go get gopkg.in/ini.v1
-$ git clone https://github.com/DiSiqueira/Gorganizer.git
+$ git clone https://github.com/d6o/Gorganizer.git
 $ cd Gorganizer/
-$ go build *.go
+$ go build .
 ```
 
 ## Usage
@@ -141,23 +140,22 @@ $ ./gorganizer -h
 
 ### Bug Reports & Feature Requests
 
-Please use the [issue tracker](https://github.com/DiSiqueira/Gorganizer/issues) to report any bugs or file feature requests.
+Please use the [issue tracker](https://github.com/d6o/Gorganizer/issues) to report any bugs or file feature requests.
 
 ### Developing
 
 PRs are welcome. To begin developing, do this:
 
 ```bash
-$ go get gopkg.in/ini.v1
-$ git clone --recursive git@github.com:DiSiqueira/Gorganizer.git
+$ git clone --recursive git@github.com:d6o/Gorganizer.git
 $ cd Gorganizer/
-$ go run *.go
+$ go run .
 ```
 
 ## Social Coding
 
 1. Create an issue to discuss about your idea
-2. [Fork it] (https://github.com/DiSiqueira/Gorganizer/fork)
+2. [Fork it] (https://github.com/d6o/Gorganizer/fork)
 3. Create your feature branch (`git checkout -b my-new-feature`)
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
