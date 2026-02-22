@@ -1,7 +1,9 @@
 .PHONY: build test lint vet clean
 
+VERSION ?= dev
+
 build:
-	go build -o gorganizer .
+	go build -ldflags "-X main.version=$(VERSION)" -o gorganizer .
 
 test:
 	go test -race -count=1 ./...

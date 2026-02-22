@@ -40,6 +40,6 @@ jobs:
         with:
           go-version: '1.25'
 
-      - uses: golangci/golangci-lint-action@v6
+      - uses: golangci/golangci-lint-action@v8
         with:
-          version: latest
+          version: v2.10.1

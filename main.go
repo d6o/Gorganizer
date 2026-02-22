@@ -12,7 +12,10 @@ import (
 	"github.com/d6o/Gorganizer/pkg/store"
 )
 
+var version = "dev"
+
 func main() {
+	showVersion := flag.Bool("version", false, "Print version and exit")
 	outputFolder := flag.String("output", ".", "Main directory to put organized folders")
 	inputFolder := flag.String("directory", ".", "The directory whose files to classify")
 	newRule := flag.String("newrule", "", "Insert a new rule. Format ext:folder Example: mp3:Music")
@@ -25,6 +28,11 @@ func main() {
 	lang := flag.String("language", "en", "Specify language: en|tr|pt")
 
 	flag.Parse()
+
+	if *showVersion {
+		fmt.Println(version)
+		return
+	}
 
 	s, err := store.NewStore(*lang, store.WithEventHandler(func(evt store.StoreEvent) {
 		switch evt {
