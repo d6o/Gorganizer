@@ -1,4 +1,4 @@
-# ![Gorganizer](https://rawgit.com/d6o/Gorganizer/master/gorganizer-logo-50.jpg)
+# ![Gorganizer](https://github.com/d6o/Gorganizer/blob/master/gorganizer-logo-50.jpg?raw=true)
 
 # Gorganizer ![Language Badge](https://img.shields.io/badge/Language-Go-blue.svg) ![Go Report](https://goreportcard.com/badge/github.com/d6o/Gorganizer) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Beta-brightgreen.svg)
 
